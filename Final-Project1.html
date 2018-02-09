@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+      
+      var blocks = [];
+      
+      function setup() {
+        createCanvas(600,600);
+        
+        for(var i=0;i<10;i++){
+          blocks.push(new Block());
+        }
+      }
+      
+      function draw() {
+        background(130,20,95);
+
+        for(var i=0; i<blocks.length; i++){
+          blocks[i].fall();
+          blocks[i].custom();
+        }
+      }
+      
+      function Block(){
+        this.x = random(width);
+        this.y = 0;
+        
+        this.fall = function(){
+          this.x += random(-2,2);
+          this.y += random(3,1);
+        }
+
+        this.custom = function(){
+          stroke(255);
+          noFill();
+          rect(this.x,this.y,50,50);
+        }
+      }
+      
+      function mousePressed(){
+          for(var i=0; i<blocks.length; i++){
+            if(mouseX > blocks[i].x-40 &&
+               mouseX < blocks[i].x+40 &&
+               mouseY > blocks[i].y-40 &&
+               mouseY < blocks[i].y+40
+              ){
+              blocks.splice(i,1);
+            } 
+          }
+      }
+      
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/nicholasi1404/p5js/blob/master/Final-Project1.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+  
+  
+</html>
+
+
+
+
+
+
+
+
